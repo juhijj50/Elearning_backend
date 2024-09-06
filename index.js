@@ -24,10 +24,7 @@ const app = express();
 
 // using middlewares
 app.use(express.json());
-app.use(cors({
-  origin: "https://e-learning-murex-seven.vercel.app/", // Replace with your actual Vercel frontend URL
-  credentials: true
-}));
+app.use(cors);
 
 
 const port = process.env.PORT ;
