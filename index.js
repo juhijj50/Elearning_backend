@@ -30,7 +30,7 @@ app.use(cors({
 }));
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT ;
 
 app.get("/", (req, res) => {
   res.send("Server is working");
