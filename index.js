@@ -6,10 +6,19 @@ import cors from "cors";
 
 dotenv.config();
 
-export const instance = new Razorpay({
-  key_id: process.env.Razorpay_Key,
-  key_secret: process.env.Razorpay_Secret,
-});
+console.log("Razorpay Key ID from ENV:", process.env.RAZORPAY_KEY_ID);
+console.log("Razorpay Key Secret from ENV:", process.env.RAZORPAY_KEY_SECRET);
+
+let instance;
+try {
+  instance = new Razorpay({
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_KEY_SECRET,
+  });
+  console.log("Razorpay initialized successfully.");
+} catch (error) {
+  console.error('Error initializing Razorpay:', error.message);
+}
 
 const app = express();
 
@@ -39,3 +48,5 @@ app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
   connectDb();
 });
+
+export { instance }; // Exporting the Razorpay instance
