@@ -35,7 +35,10 @@ app.use("/api", userRoutes);
 app.use("/api", courseRoutes);
 app.use("/api", adminRoutes);
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+const server = app.listen(port || 10000, '0.0.0.0', () => {
+  console.log(`Server is running on port ${port || 10000}`);
   connectDb();
 });
+
+server.keepAliveTimeout = 120000; // 120 seconds
+server.headersTimeout = 120000; // 120 seconds
